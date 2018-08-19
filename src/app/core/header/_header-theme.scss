@@ -1,0 +1,8 @@
+@mixin header-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  #header {
+    background-color: mat-color($primary);
+    color: mat-color($primary, default-contrast);
+  }
+}

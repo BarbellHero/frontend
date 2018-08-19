@@ -1,0 +1,12 @@
+@import "~@angular/material/theming";
+@import "src/app/core/header/header-theme";
+
+@include mat-core();
+
+$theme-primary: mat-palette($mat-indigo);
+$theme-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$theme: mat-light-theme($theme-primary, $theme-accent);
+@include angular-material-theme($theme);
+
+@include header-theme($theme);
