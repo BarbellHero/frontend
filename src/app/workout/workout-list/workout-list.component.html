@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let workout of workouts">
+    {{workout.id}} {{workout.name}}
+  </li>
+</ul>
+<form>
+<input name="workoutName" placeholder="Workout Name" [(ngModel)]="newWorkout.name">
+<button (click)="add()">Add</button>
+</form>
