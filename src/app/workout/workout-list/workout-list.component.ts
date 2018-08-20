@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WorkoutRepositoryService } from 'src/app/workout/workout-repository.service';
-import { Workout } from 'src/app/workout/workout';
+import { WorkoutRepositoryService } from '../workout-repository.service';
+import { Workout } from '../workout';
 import { MatTable } from '@angular/material';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-workout-list',
@@ -13,10 +14,12 @@ export class WorkoutListComponent implements OnInit {
 
   workouts: Workout[];
   displayedColumns = ['id', 'name'];
-  newWorkout: Workout = new Workout();
 
   @ViewChild('table')
   table: MatTable<Workout>;
+
+  @ViewChild('addForm')
+  addForm: NgForm;
 
   constructor(private workoutRepository: WorkoutRepositoryService) {
   }
@@ -27,12 +30,12 @@ export class WorkoutListComponent implements OnInit {
     });
   }
 
-  add() {
-    this.workoutRepository.create(this.newWorkout).subscribe(workout => {
+  add(form: NgForm) {
+    this.workoutRepository.create(form.value).subscribe(workout => {
       this.workouts.push(workout);
       this.table.renderRows();
+      this.addForm.resetForm();
     });
-    this.newWorkout.name = '';
   }
 
 }

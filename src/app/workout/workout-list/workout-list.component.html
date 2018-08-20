@@ -18,15 +18,15 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <form>
+      <form (ngSubmit)="add(addForm)" #addForm="ngForm">
         <div fxLayout="row" fxLayoutGap="16px">
           <div>
             <mat-form-field>
-              <input matInput name="workoutName" placeholder="Workout Name" [(ngModel)]="newWorkout.name">
+              <input required matInput name="name" placeholder="Workout Name" ngModel>
             </mat-form-field>
           </div>
           <div>
-            <button mat-raised-button color="primary" (click)="add()">Add</button>
+            <button [disabled]="!addForm.valid" mat-raised-button color="primary">Add</button>
           </div>
         </div>
       </form>
