@@ -4,6 +4,7 @@ import { WorkoutRepositoryService } from '../workout-repository.service';
 import { Workout } from '../workout';
 import { MatTable } from '@angular/material';
 import { NgForm } from '@angular/forms';
+import { remove } from 'lodash';
 
 @Component({
   selector: 'app-workout-list',
@@ -13,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class WorkoutListComponent implements OnInit {
 
   workouts: Workout[];
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name', 'actions'];
 
   @ViewChild('table')
   table: MatTable<Workout>;
@@ -38,4 +39,10 @@ export class WorkoutListComponent implements OnInit {
     });
   }
 
+  delete(id: number) {
+    this.workoutRepository.delete(id).subscribe(() => {
+      remove(this.workouts, { id });
+      this.table.renderRows();
+    });
+  }
 }

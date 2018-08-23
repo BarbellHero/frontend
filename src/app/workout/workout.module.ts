@@ -13,6 +13,7 @@ import {
 import { WorkoutRoutingModule } from './workout-routing.module';
 import { WorkoutListComponent } from './workout-list/workout-list.component';
 import { WorkoutRepositoryService } from './workout-repository.service';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { WorkoutRepositoryService } from './workout-repository.service';
     MatTableModule,
     WorkoutRoutingModule
   ],
-  declarations: [WorkoutListComponent],
+  declarations: [WorkoutListComponent, EditComponent],
   providers: [WorkoutRepositoryService]
 })
 export class WorkoutModule { }
